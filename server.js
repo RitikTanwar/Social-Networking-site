@@ -23,7 +23,7 @@ var socketIO = require("socket.io")(http);
 var socketID = "";
 var users = [];
 
-var mainURL = "https://calm-oasis-43219.herokuapp.com/";
+var mainURL = "https://calm-oasis-43219.herokuapp.com";
 
 socketIO.on("connection", function (socket) {
     console.log("User connected", socket.id);
@@ -36,7 +36,7 @@ if (port == null || port == "") {
 }
 
 http.listen(port, function () {
-    // console.log("Server started at " + mainURL);
+    console.log("Server started at " + mainURL);
 
     mongoClient.connect("mongodb+srv://RitikTanwar:ritiktanwaradw136@cluster0.b507o.mongodb.net/my_social_network", function (error, client) {
         var database = client.db("my_social_network");
