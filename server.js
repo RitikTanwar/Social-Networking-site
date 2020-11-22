@@ -23,15 +23,20 @@ var socketIO = require("socket.io")(http);
 var socketID = "";
 var users = [];
 
-var mainURL = "http://localhost:8000";
+var mainURL = "https://calm-oasis-43219.herokuapp.com/";
 
 socketIO.on("connection", function (socket) {
     console.log("User connected", socket.id);
     socketID = socket.id;
 });
 
-http.listen(8000, function () {
-    console.log("Server started at " + mainURL);
+let port = process.env.port;
+if (port == null || port == "") {
+    port = 8000
+}
+
+http.listen(port, function () {
+    // console.log("Server started at " + mainURL);
 
     mongoClient.connect("mongodb+srv://RitikTanwar:ritiktanwaradw136@cluster0.b507o.mongodb.net/my_social_network", function (error, client) {
         var database = client.db("my_social_network");
